@@ -6,7 +6,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-file_name = r"C:\ulam_data\addend-02-10000000.log" # 740,366 lines, last number 9,999,999
+file_name = r"C:\ulam_data\addend-02-10,000,000.log" # 740,366 lines, last number 9,999,999
 n_lines_limit = 300
 
 # Initialise the subplot function using number of rows and columns
@@ -70,7 +70,7 @@ axes[1,1].set_xticks([0,1/3,2/3,1])
 
 axes[1,0].grid(axis='x')
 axes[1,1].grid(axis='x')
-plt.savefig('ulam_graph_10,000,000.png')
+plt.savefig('ulam_general_graph_10,000,000.png')
 plt.show()
 plt.close()
 
