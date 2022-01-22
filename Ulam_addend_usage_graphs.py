@@ -86,3 +86,4 @@ plt.close()
 
 print("done")
 # IMPORTANT: do linear regression and find slope + closeness to linear functions on the linear growing numbers.
+# to do: add FileNames to this code too.
