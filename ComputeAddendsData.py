@@ -53,9 +53,14 @@ with open (ulam_file_name) as ulam_file:
             addend_slope_file.write(str(number_to_find) +"\t"+ str(slope) +"\t"+ str(count) +"\n")
 
             # if this seqeunce flat?
-            if count > 10:
-                # put non-flat sequences in files
-                pass
+            if count <= 10:
+                # no need to record flat sequences
+                continue
+            # put non-flat sequences in files
+            addend_usage_seq_file_name = data_folder + f"/AddendUsageSeq{number_to_find}.txt"
+            with open (addend_usage_seq_file_name, "w") as addend_usage_seq_file:
+                for elem in counts:
+                    addend_usage_seq_file.writelines(str(elem) + "\n")
 
 
 print("done")
