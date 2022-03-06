@@ -2,7 +2,6 @@
 # The addends of growing usage will be on the left and their residues right.
 
 # importing the library
-# TODO import the data (ex: Data-02-00010,000 --> AddendUsageSeq#.txt)
 import FileNames
 import math
 import os
@@ -30,9 +29,10 @@ for root, directories, files in os.walk(path):
 		if(file.endswith(".txt")):
 			data_files.append(os.path.join(root,file))
             
-# process each file
+# process tsv file
 residues = []
 residues_growing_addends = []
+residues_flat_addends = []
 table_file_name = f"{data_folder}" + "/AddendSlopes.tsv"
 
 with open(table_file_name) as table_file:
@@ -41,15 +41,18 @@ with open(table_file_name) as table_file:
         if n_line == 0:
             n_line += 1
         else:
-            l=line.split('\t')
-            res = [str(i) for i in line.split()]
-            ulam_addends = int(res[0])
-            count = int(res[2])
-            residues.append((ulam_addends % Lambda)/Lambda)
+            row_values = line.split()
+            ulam_addend = int(row_values[0])
+            count = int(row_values[2])
+            residue = (ulam_addend % Lambda)/Lambda
+            # residues.append(residue)
             if count > 10:
-                residues_growing_addends.append((ulam_addends % Lambda)/Lambda)
+                residues_growing_addends.append(residue)
+            else:
+                residues_flat_addends.append(residue)
 
 
+# process each growing sequence
 for data_file_name in data_files:
     # Second, extract the addend sequences for the given ulam seq length.
     # read the file
@@ -60,16 +63,19 @@ for data_file_name in data_files:
     # Determine parameters for graphing
     x = range(len(addend_seq))
     axes[0].plot(x,addend_seq) #TODO fix ticks for y-axis
-    axes[0].set_title(f"Addend sequences for Ulam sequence length {len(addend_seq)}") #TODO
+    axes[0].set_title("Growing addend sequences")
 
-axes[1].hist(residues_growing_addends, bins = 60)
+axes[1].hist(residues_growing_addends, bins = 60, label = 'Growing addends residue')
+axes[1].hist(residues_flat_addends, bins = 60, color = 'red', label = 'Flat addends residue')
 axes[1].set_xticks([0,1/3,2/3,1])
+axes[1].legend()
 
 axes[0].grid(axis='x')
 axes[0].set_yticks([0, len(addend_seq)/9, 2*len(addend_seq)/9, len(addend_seq)/3])
-plt.savefig(f'Addend sequences for Ulam sequence length {len(addend_seq)}.png') #TODO
+plt.savefig(f'{data_folder}/Growing addend sequences.png')
 plt.show()
 plt.close()
 
-print(residues)
-print(residues_growing_addends)
+# print(residues)
+# print(residues_growing_addends)
+print("done")
