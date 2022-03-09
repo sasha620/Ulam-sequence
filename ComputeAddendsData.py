@@ -10,7 +10,7 @@ import math
 import os
 
 # input Ulam sequence file
-file_index = 7 #TODO 8,9,10 for storage outside of Dropbox
+file_index = 8 #TODO 8,9,10 for storage outside of Dropbox
 file_suffix = FileNames.get_file_name_suffix(file_index)
 ulam_file_name = "C:/ulam_data/addend-" + file_suffix + ".log"
 last_number = FileNames.get_last_number(file_index)
