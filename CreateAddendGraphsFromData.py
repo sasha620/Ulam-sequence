@@ -13,7 +13,7 @@ figure, axes = plt.subplots(2)
 Lambda = 2.44344296778474
 
 # determine the data folder
-file_index = 8
+file_index = 5
 file_suffix = FileNames.get_file_name_suffix(file_index)
 data_folder = "Data-" + file_suffix
 print(data_folder)
@@ -73,7 +73,7 @@ axes[1].legend()
 
 axes[0].grid(axis='x')
 axes[0].set_yticks([0, len(addend_seq)/9, 2*len(addend_seq)/9, len(addend_seq)/3])
-plt.savefig(f'{data_folder}/Addend sequences and residues.png')
+#plt.savefig(f'{data_folder}/Addend sequences and residues.png')
 plt.show()
 plt.close()
 
