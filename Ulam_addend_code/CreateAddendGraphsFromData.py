@@ -13,7 +13,7 @@ figure, axes = plt.subplots(2)
 Lambda = 2.44344296778474
 
 # determine the data folder
-file_index = 5
+file_index = 4
 file_suffix = FileNames.get_file_name_suffix(file_index)
 data_folder = "Data-" + file_suffix
 print(data_folder)
